@@ -22,5 +22,7 @@ Some comments:
 
 The major technolgies used are node.js, express, mongoDB and mongoose. There are some other tools and library is also included but not naming it here.
 
+Live demo: https://buildforcovid19.herokuapp.com/
+
 Support:
 If you need any support you can email me at satyendrapandit2018@gmail.com or even can contact me on LinkedIn, Facebook & Instagram.
