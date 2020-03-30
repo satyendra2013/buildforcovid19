@@ -1,0 +1,56 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+    li(class= `${active ? 'side-nav--active' : ''}`)
+        a(href=`${link}`)
+            svg
+                use(xlink:href=`img/icons.svg#icon-${icon}`)
+            | #{text}
+
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +navItem('/me', 'Settings', 'settings')
+                    +navItem('/profile', 'Complete profile', 'briefcase')
+                    +navItem('#', 'Request Food', 'star', true)
+                    +navItem('/getting-symptoms', 'Report yourself', 'users')
+                    +navItem('/donate', 'Donate', 'credit-card')
+
+                - if(user.role === 'hospitals')
+                    .admin-nav
+                        h5.admin-nav__heading Hospital
+                        ul.side-nav
+                            +navItem('/request-ventilators', 'Request Ventilators', 'map', true)
+                            +navItem('#', 'Suspected users', 'users')
+                            +navItem('#', 'Reported users', 'star')
+
+                - if(user.role === 'admin' || user.role === 'gov' || user.role==='ngo')
+                    .admin-nav
+                        h5.admin-nav__heading Requests
+                        ul.side-nav
+                            +navItem('#', 'Ventilator Request', 'map')
+                            +navItem('#', 'Meal Request', 'briefcase')
+                            +navItem('#', 'Infected users', 'users')
+                            +navItem('#', 'Total donations', 'credit-card')
+                            
+            .user-view__content
+                if(profiles.length > 0)  
+                    .user-view__form-container
+                        h2.heading-secondary.ma-bt-md Request Food Packet
+
+                        //- WITH API
+                        form.form.form-meal-data 
+                            .form__group
+                                label.form__label(for='packet') No of packet
+                                input#packet.form__input(type='Number', placeholder='1', required, name='packet')
+
+                            .form__group.right
+                                button.btn.btn--small.btn--black Request Meal
+                if (profiles.length === 0)
+                    .error
+                        .error__title
+                            h2.heading-secondary.heading-secondary--error No profile exists.   
+                            h2.error__emoji 😢 
+                        .error__msg Please create your complete profile.

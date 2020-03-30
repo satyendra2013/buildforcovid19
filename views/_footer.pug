@@ -1,0 +1,25 @@
+footer.footer
+  if user
+    .footer__logo
+        img(src='/img/logo-footer.png' alt='BuildForCOVID19 logo')
+    ul.footer__nav
+        li: a(href='#') About us
+        li: a(href='#') Support us
+        li: a(href='#') Contact
+        li: a(href='#') Help
+        li: a(href='#') Report an issue
+    p.footer__copyright Build with 😢 by Satyendra Pandit. The source code is licensed under MIT license.
+  else 
+    .content.has-text-centered
+      p
+        strong #BuildForCOVID19
+        |  by 
+        a(href='https://github.com/satyendra2013/') Satyendra Pandit
+        | . The source code is licensed 
+        a(href='http://opensource.org/licenses/mit-license.php') MIT
+        | . This integrated platform
+        |       is built to help people, hospitals, government and NGO. 
+        a(href='http://creativecommons.org/licenses/by-nc-sa/4.0/') CC BY NC SA 4.0
+        | .
+
+script(defer='' src='https://use.fontawesome.com/releases/v5.3.1/js/all.js')

@@ -1,0 +1,161 @@
+extends base
+
+mixin overviewBox(label, text, icon)
+    .overview-box__detail
+        svg.overview-box__icon
+            use(xlink:href=`/img/icons.svg#icon-${icon}`)
+        span.overview-box__label= label
+        span.overview-box__text= text
+
+block content
+    if user
+        section.section-header
+            .header__hero
+                .header__hero-overlay &nbsp;
+                img.header__hero-img(src=`/img/covid-19.jpg`, alt= `COVID19 image`)
+            .heading-box
+                h1.heading-primary 
+                    span= `#LET'S #FIGHTTOGETHER`
+                .line &nbsp; 
+                a.btn.btn--black(href='/request-meal') Request Meal
+                |  
+                a.btn.btn--black(href='/request-ventilators') Request Ventilators
+                |  
+                a.btn.btn--black(href='/getting-symptoms') Report yourself
+        section.section-description
+            .overview-box
+                div
+                    .overview-box__group
+                        h2.heading-secondary.ma-bt-lg Quick facts
+
+                        +overviewBox('Coronavirus Cases', '723,345', 'user')
+                        +overviewBox('Deaths', '33,993', 'trending-up')
+                        +overviewBox('Recovered', '151,809', 'trending-up')
+                        +overviewBox('ACTIVE CASES', '537,543', 'trending-up')
+                        +overviewBox('CLOSED CASES', '185,802', 'trending-up')
+
+                        a.btn.btn--black(href='https://coronavirus.jhu.edu/map.html', target='_blank') LIVE UPDATE
+
+                    .overview-box__group
+                        h2.heading-secondary.ma-bt-lg Help us to fight
+
+                        +overviewBox('Free Meal Delivered', '3,345', 'user')
+                        +overviewBox('Mask Delivered', '33,000', 'trending-up')
+                        +overviewBox('Ventilator Request', '13,345', 'trending-up')
+
+                        a.btn.btn--black(href='/donate', target='_blank') Donate now
+            .description-box
+                h2.heading-secondary.ma-bt-lg About COVID19
+                p.description__text= 'Coronaviruses are a group of viruses belonging to the family of Coronaviridae, which infect both animals and humans. Human coronaviruses can cause mild disease similar to a common cold, while others cause more severe disease (such as MERS - Middle East Respiratory Syndrome and SARS – Severe Acute Respiratory Syndrome). A new coronavirus that previously has not been identified in humans emerged in Wuhan, China in December 2019. Signs and symptoms include respiratory symptoms and include fever, cough and shortness of breath. In more severe cases, infection can cause pneumonia, severe acute respiratory syndrome and sometimes death. Standard recommendations to prevent the spread of COVID-19 include frequent cleaning of hands using alcohol-based hand rub or soap and water; covering the nose and mouth with a flexed elbow or disposable tissue when coughing and sneezing; and avoiding close contact with anyone that has a fever and cough. WHO is working closely with global experts, governments and partners to rapidly expand scientific knowledge on this new virus and to provide timely advice on measures to protect people’s health and prevent the spread of this outbreak.'          
+
+    else
+        section.hero.is-primary.is-medium
+            .hero-body
+                .container
+                    h1.title.has-text-centered.is-capitalized
+                        | #BuildForCOVID19
+                    h2.subtitle.has-text-centered
+                        | Help us to fight against COVID19 together.
+                    .has-text-centered 
+                        a.button.is-danger(href='/signup') Request Ventilator
+                        | 
+                        a.button.is-info(href='/signup') Request Food  
+                        | 
+                        a.button.is-danger(href='/signup') Donate Now
+        section.hero
+            .hero-body
+                .container
+                    h1.title.has-text-centered
+                        | How it works?
+                    h2.subtitle.has-text-centered
+                        | #BuildForCOVID19 is an integrated platform for fighting against COVID19 pandemic.
+                    .p
+                    |
+                    .columns.has-text-centered   
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #SignUp
+                            p.has-text-centered
+                                | If you haven't reigstered yourelf on the platform. Please registered yourself so that we can help you to fight this pandemic together.
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #CompleteProfile
+                            p.has-text-centered
+                                | Soon after registeration, complete your profile so that we and goverment officials can help you with free meals and other medical facilities.
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #NeedHelp
+                            p.has-text-centered
+                                | In case of any COVID19 symptoms, you can report yourself to us. Our volunteer along with goverment officials will help you within 24 hours.
+        
+        section.hero.is-danger
+            .hero-body
+                .container
+                    h1.title.has-text-centered
+                        | Let us know if you're hungry.
+                    h2.subtitle.has-text-centered
+                        | Request free meals, or ask for other help you may need. A volunteer will bring your delivery right to your door.
+                    .p
+                    |
+                    .columns.has-text-centered   
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #Step1
+                            p.has-text-centered
+                                | If you are hungry and there is nothing to eat. Please signup into the portal. And raise a request for free meal packet. 
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #Step2
+                            p.has-text-centered
+                                | Your raised request will go to your nearest neighbour, NGO and government official. Anyone can help you to send a meal packet. 
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #Step3
+                            p.has-text-centered
+                                | As soon as your request accepted, one of our volunteer will take your meal packet from the contributor and will bring with you.
+        section.hero
+            .hero-body
+                .container
+                    h1.title.has-text-centered
+                        | Need ventilators?
+                    h2.subtitle.has-text-centered
+                        | If you're a medical institutions and serving #corona victims, you can request ventilators. We'll help you to arrange free ventilators for life saving.
+                    .p
+                    |
+                    .columns.has-text-centered   
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #Step1
+                            p.has-text-centered
+                                | Do you think your hospitals do not have sufficient number of ventilators? If not, please raise a request for ventilators by login into the portal. 
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #Step2
+                            p.has-text-centered
+                                | Your raised request will go to your Government officials, NGOs and Partner institutions. We will coordinate so that you can save lives. 
+                        .column
+                            h1.subtitle.has-text-centered
+                                | #Step3
+                            p.has-text-centered
+                                | As soon as your request accepted, one of our volunteer will help them deliver it soon by coordinating with donor authority.
+        section.hero.is-light
+            .hero-body
+                .container
+                    h1.title.has-text-centered
+                        | Subscribe
+                    h2.subtitle.has-text-centered
+                        | Sign up with your email address to receive news and updates from us. We may share updates on ways to volunteer or to receive services here as they come up.
+                    columns
+                        .column.is-7.is-offset-4.has-text-centered
+                            form.form-subscribe-data
+                                .field.has-addons
+                                    .control
+                                        input#sub-email.input.is-medium.is-dark(type="email", placeholder="you@example.com", name='sub-email', required)
+                                    .control
+                                        button.button.is-dark.is-medium#submit
+                                            | Subscribe
+                
+        
+
+
+                    

@@ -1,0 +1,80 @@
+if user
+    header.header
+        nav.nav.nav--tours
+            a.nav__el(href='/') Dashboard
+        .header__logo
+            img(src='/img/logo.png' alt='BuildForCOVID19 logo')
+        nav.nav.nav--user
+            if user
+                a.nav__el.nav__el--logout Log out
+                a.nav__el(href='/me')
+                    img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
+                    span= user.name.split(' ')[0]
+            else
+                a.nav__el(href='/login') Log In
+                a.nav__el.nav__el--cta(href='#') Sign up
+
+else
+    nav.navbar(role='navigation' aria-label='main navigation')
+        .navbar-brand
+            a.navbar-item(href='/')
+                img(src='/img/logo-footer.png')
+            a.navbar-burger(role='button' data-target='navMenu' aria-label='menu' aria-expanded='false')
+                span(aria-hidden='true')
+                span(aria-hidden='true')
+                span(aria-hidden='true')
+        #navMenu.navbar-menu
+            .navbar-start
+                a.navbar-item(href='/signup')
+                    | Request Ventilators
+                a.navbar-item(href='/signup')
+                    | Request Food
+                a.navbar-item(href='/signup')
+                    | Donate
+                .navbar-item.has-dropdown.is-hoverable
+                    a.navbar-link
+                        | More
+                    .navbar-dropdown
+                        a.navbar-item(href='https://github.com/satyendra2013/')
+                            | About
+                        a.navbar-item
+                            | Help
+                        a.navbar-item
+                            | Contact
+                        hr.navbar-divider
+                        a.navbar-item
+                            | Report an issue
+
+            .navbar-end
+                .navbar-item
+                    .buttons
+                        a.button.is-primary(href='/signup')
+                            strong Sign up
+                        a.button.is-light(href='/login')
+                                | Log in
+script.
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+            });
+        });
+    }
+
+        });

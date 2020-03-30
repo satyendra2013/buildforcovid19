@@ -1,0 +1,44 @@
+extends base
+
+block content 
+
+    //- main.main
+    //-     .login-form
+    //-         h2.heading-secondary.ma-bt-lg Log into your account
+    //-         form.form.form--login
+    //-             .form__group
+    //-                 label.form__label(for='email') Email address
+    //-                 input#email.form__input(type='email', placeholder='you@example.com', required)
+    //-             .form__group.ma-bt-md
+    //-                 label.form__label(for='password') Password
+    //-                 input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+    //-             .form__group
+    //-                 button.btn.btn--green Login
+    .section.hero
+        .columns
+            .column.is-4
+            .column.is-4.has-text-centered
+                h1.title.has-text-centered Create your account
+                form.form--login
+                    .field
+                        p.control.has-icons-left.has-icons-right
+                            input#email.input(type='email', placeholder='you@example.com', required)
+                            span.icon.is-small.is-left
+                                i.fas.fa-envelope
+                            span.icon.is-small.is-right
+                                i.fas.fa-check
+                    .field
+                        p.control.has-icons-left
+                            input#password.input(type='password', placeholder='••••••••', required, minlength='8')
+                            span.icon.is-small.is-left
+                                i.fas.fa-lock
+                    .field
+                        p.control.has-text-centered
+                            button.button.is-primary.is-fullwidth
+                                strong Login 
+                            | 
+                    .field
+                        p.control.control.has-text-centered
+                            a.is-primary(href='/signup')
+                                | forgot password? 
+            .column.is-4
