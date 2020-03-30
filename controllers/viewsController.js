@@ -46,7 +46,6 @@ exports.requestMeal = catchAsync(async (req, res) => {
 
 exports.reportYourself = catchAsync(async (req, res) => {
   const profiles = await Profile.find({ user: { $eq: req.user.id } });
-  console.log(profiles);
   res.status(200).render('report', {
     title: 'Report yourself',
     profiles
@@ -55,7 +54,6 @@ exports.reportYourself = catchAsync(async (req, res) => {
 
 exports.makeDonation = catchAsync(async (req, res) => {
   const profiles = await Profile.find({ user: { $eq: req.user.id } });
-  console.log(profiles);
   res.status(200).render('donate', {
     title: 'Make Donation',
     profiles
@@ -64,7 +62,6 @@ exports.makeDonation = catchAsync(async (req, res) => {
 
 exports.requestVentilators = catchAsync(async (req, res) => {
   const profiles = await Profile.find({ user: { $eq: req.user.id } });
-  console.log(profiles);
   res.status(200).render('ventilator', {
     title: 'Request Ventilators',
     profiles

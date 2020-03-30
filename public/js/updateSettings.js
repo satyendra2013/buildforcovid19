@@ -7,8 +7,8 @@ export const updateSettings = async (data, type) => {
   try {
     const url =
       type === 'password'
-        ? 'http://127.0.0.1:3000/api/v1/users/updateMyPassword'
-        : 'http://127.0.0.1:3000/api/v1/users/updateMe';
+        ? '/api/v1/users/updateMyPassword'
+        : '/api/v1/users/updateMe';
     const res = await axios({
       method: 'PATCH',
       url,
@@ -39,9 +39,7 @@ export const completeUserProfile = async (
 ) => {
   try {
     const url =
-      type === 'update'
-        ? `http://127.0.0.1:3000/api/v1/profiles/${targetId}`
-        : 'http://127.0.0.1:3000/api/v1/profiles';
+      type === 'update' ? `/api/v1/profiles/${targetId}` : '/api/v1/profiles';
     const method = type === 'update' ? 'PATCH' : 'POST';
     const res = await axios({
       method: method,
@@ -69,7 +67,7 @@ export const completeUserProfile = async (
 
 export const requestPacketMeal = async noOfPackage => {
   try {
-    const url = 'http://127.0.0.1:3000/api/v1/meals';
+    const url = '/api/v1/meals';
     const res = await axios({
       method: 'POST',
       url,
@@ -88,7 +86,7 @@ export const requestPacketMeal = async noOfPackage => {
 
 export const requestMedicalCheckup = async (suspected, targetId) => {
   try {
-    const url = `http://127.0.0.1:3000/api/v1/profiles/${targetId}`;
+    const url = `/api/v1/profiles/${targetId}`;
     const res = await axios({
       method: 'PATCH',
       url,
@@ -107,7 +105,7 @@ export const requestMedicalCheckup = async (suspected, targetId) => {
 
 export const requestEmergencyHelp = async (reportMeToCoronaAuth, targetId) => {
   try {
-    const url = `http://127.0.0.1:3000/api/v1/profiles/${targetId}`;
+    const url = `/api/v1/profiles/${targetId}`;
     const res = await axios({
       method: 'PATCH',
       url,
@@ -126,7 +124,7 @@ export const requestEmergencyHelp = async (reportMeToCoronaAuth, targetId) => {
 
 export const makeDonation = async donationAmount => {
   try {
-    const url = `http://127.0.0.1:3000/api/v1/donation`;
+    const url = `/api/v1/donation`;
     const res = await axios({
       method: 'POST',
       url,
@@ -145,7 +143,7 @@ export const makeDonation = async donationAmount => {
 
 export const requestVentilator = async (requestorType, quantity) => {
   try {
-    const url = `http://127.0.0.1:3000/api/v1/ventilators`;
+    const url = `/api/v1/ventilators`;
     const res = await axios({
       method: 'POST',
       url,
@@ -165,7 +163,7 @@ export const requestVentilator = async (requestorType, quantity) => {
 
 export const subscribeEmail = async email => {
   try {
-    const url = `http://127.0.0.1:3000/api/v1/subscribe`;
+    const url = `/api/v1/subscribe`;
     const res = await axios({
       method: 'POST',
       url,

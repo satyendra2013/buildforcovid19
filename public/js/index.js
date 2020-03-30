@@ -39,7 +39,6 @@ if (loginForm)
 
 if (signUpForm)
   signUpForm.addEventListener('submit', e => {
-    console.log('Hi');
     e.preventDefault();
     //VALUES
     const name = document.getElementById('name').value;
@@ -47,7 +46,6 @@ if (signUpForm)
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
 
-    console.log(name, email, password, passwordConfirm);
     signup(name, email, password, passwordConfirm);
   });
 
@@ -60,7 +58,6 @@ if (userDataForm)
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
 
     updateSettings(form, 'data');
   });

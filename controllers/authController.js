@@ -41,23 +41,13 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
 
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
-  await new Email(newUser, url).sendWelcome();
 
-  // const newUser = await User.create({
-  //   name: req.body.name,
-  //   email: req.body.email,
-  //   password: req.body.password,
-  //   passwordConfirm: req.body.passwordConfirm,
-  //   passwordChangedAt: req.body.passwordChangedAt
-  // });
+  await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-  //const email = req.body.email; or we can use eslint destructuring
-
   const { email, password } = req.body;
 
   //1.Check if email and password exists
@@ -95,8 +85,6 @@ exports.protect = catchAsync(async (req, res, next) => {
     //&& req.cookies.jwt !== 'loggedout' This code is additionally added. Can be removed.
     token = req.cookies.jwt;
   }
-
-  //console.log(token);
 
   if (!token) {
     return next(
@@ -197,7 +185,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       message: 'Token sent to email!'
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });

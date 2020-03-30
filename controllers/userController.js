@@ -19,10 +19,10 @@ const factory = require('./../controllers/handlerFactory');
 const multerStorage = multer.memoryStorage(); //store image in memory as buffer not in disk storage.
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')){
-    cb(null, true)
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
   } else {
-    cb(new AppError('Not an image! Please upload only images.', 400), false)
+    cb(new AppError('Not an image! Please upload only images.', 400), false);
   }
 };
 
@@ -34,7 +34,7 @@ const upload = multer({
 exports.uploadUserPhoto = upload.single('photo');
 
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
-  if(!req.file) return next();
+  if (!req.file) return next();
 
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
 
@@ -42,21 +42,21 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
-    .toFile(`public/img/users/${req.file.filename}`); 
-    
+    .toFile(`public/img/users/${req.file.filename}`);
+
   next();
 });
 
 const filterObj = (obj, ...allowedFields) => {
-    const newObj = {};
-    Object.keys(obj).forEach(el => {
-        if(allowedFields.includes(el)) {
-            newObj[el] = obj[el];
-        }
-    });
+  const newObj = {};
+  Object.keys(obj).forEach(el => {
+    if (allowedFields.includes(el)) {
+      newObj[el] = obj[el];
+    }
+  });
 
-    return newObj;
-}
+  return newObj;
+};
 
 // exports.getAllUsers = catchAsync(async (req, res) => {
 //   const users = await User.find();
@@ -74,12 +74,9 @@ const filterObj = (obj, ...allowedFields) => {
 exports.getMe = (req, res, next) => {
   req.params.id = req.user.id;
   next();
-}
+};
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  // console.log(req.file);
-  // console.log(req.body);
-
   //1. Create error if user posts password data
   if (req.body.password || req.body.passwordConfirnm) {
     return next(
@@ -92,7 +89,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
   //2. Filtered out unwanted fields name that are not allowed to be updated.
   const filteredBody = filterObj(req.body, 'name', 'email');
-  if(req.file) filteredBody.photo = req.file.filename;
+  if (req.file) filteredBody.photo = req.file.filename;
 
   //3. Update user document
   //body.role: 'admin' not for user
@@ -104,27 +101,27 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: {
-        user: updatedUser
+      user: updatedUser
     }
   });
 });
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
-    await User.findByIdAndUpdate(req.user.id, {
-        active: false
-    })
+  await User.findByIdAndUpdate(req.user.id, {
+    active: false
+  });
 
-    res.status(204).json({
-        status: 'success',
-        data: null
-    });
+  res.status(204).json({
+    status: 'success',
+    data: null
+  });
 });
 
 exports.createUsers = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route is not defined!Please use /signup instead.'
-    });
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not defined!Please use /signup instead.'
+  });
 };
 
 exports.getUser = factory.getOne(User);
@@ -133,4 +130,3 @@ exports.getAllUsers = factory.getAll(User);
 //Do NOT update passwords with this!
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
-
