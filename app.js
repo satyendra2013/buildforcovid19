@@ -26,8 +26,6 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // 1)GLOBAL MIDDLEWARES
-//serving static files
-//app.use(express.static(`${__dirname}/public`)); //old method for file
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Set security HTTP Headers
